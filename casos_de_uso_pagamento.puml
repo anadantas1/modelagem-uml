@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+
+actor Cliente
+actor Banco
+
+rectangle "Sistema de Pagamento" {
+  usecase "Realizar Login" as UC1
+  usecase "Consultar Saldo" as UC2
+  usecase "Realizar Pagamento" as UC3
+  usecase "Gerar Comprovante" as UC4
+  usecase "Validar Login" as UC5
+  usecase "Processar Pagamento" as UC6
+  usecase "Validar Transação" as UC7
+}
+
+Cliente -- UC1
+Cliente -- UC2
+Cliente -- UC3
+Cliente -- UC4
+
+UC4 ..> UC3 : <<extend>>
+UC3 ..> UC5 : <<include>>
+UC3 ..> UC6 : <<include>>
+UC6 ..> UC7 : <<include>>
+
+Banco -- UC6
+Banco -- UC7
+@enduml
